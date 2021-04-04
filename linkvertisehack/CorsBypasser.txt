@@ -1,2 +1,1 @@
-Sorry the code for the new GMP linkvertise CORS bypasser was made private due to others copying it without giving credit.
-You can still copy the html code, but please give credit if possible. Thank you.
+GamesModPlus decided to leak the GMP api code curently hosted on heroku. Feel free to use it an any of your projects, credits are greatly apprecieted. Code: https://github.com/gamesmodplus/gmp-api.
