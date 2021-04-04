@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.input {
+  width: 100%;
+  height: 10vw;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 5vw;
+  color: #559ced;
+}
+.button {
+  background-color: white;
+  border: 0.4vw solid #555555;
+  color: #555555;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 5vw;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 2vw;
+  width: 90%;
+  height: 10vw;
+}
+
+.button:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.text {
+	font-size: 4.5vw; 
+	font-family:sans-serif;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+</style>
+</head>
+<body style="overflow:hidden;background-color:#dedede;" onload="auto();">
+	<p class="text" style="font-size:3vw;text-align:center;">Bypasser By GamesModPlus (V3 Beta N4)<span style="color:#3da63f;">(Using cors bypasser V4)</span>-<span style="color:#e3b249;">This is a beta version of the new bypasser.</span> Click <a href="#" onclick="opennotifforce()">here</a> for more info</p>
+	<div style="padding-top:2vw;">
+	<input type="text" id="bypassentry" class="input" placeholder="Enter the linkvertise link here">
+	</div>
+	<div style="text-align:center;">
+		<button id="bypassbutton" class="button" onclick="bypass();">Bypass</button>
+	</div>
+	<p id="bypasstext" class="text">Output link: <a id="bypassoutput" style="color:#559ced;word-break: break-all;" target="_blank"></a></p>
+	<p class="text" style="text-align:center;">Log:</p>
+	<div style="overflow-y:scroll;overflow-x:hidden;height:20vw;background-color:#ffffff;" id="bypasslog">
+	</div>
+	<p class="text" style="font-size:3vw;text-align:center;">Credits: the hack method is from <a style="color:#559ced;word-break: break-all;" target="_blank" href="https://greasyfork.org/fr-CA/scripts/409156-linkvertise-bypass/code">https://greasyfork.org/fr-CA/scripts/409156-linkvertise-bypass/code</a></p>
+	<div id="notify" style="display:none;width:80%;height:50%;background-color:#8f8f8f;position:absolute;top:20%;left:10%;border-radius:2vw;border: 0.4vw solid #5c5c5c;text-align:center;">
+	<p class="text" style="font-size:3vw;">GMP has decided to try to restore the CORS Bypasser. If the bypasser breaks again there may or may not be fixes to it. It is not an easy task to constantly have to update the code and change hosts for the best experience. It would be aprecieted that you don't spam this bypasser. Remember that you might have to press the bypass button multiple times to bypass your link you might also get strange bugged errors. NOTE: The new bypasser may take up to <span style="color:#b00c00">30SEC</span> to bypass your link so please be patient.</p>
+	<button class="button" onclick='closenotif()'>
+		Dismiss
+	</button>
+	</div>
+<script>
+window.notify=0
+function closenotif(){
+	document.getElementById('notify').style.display='none'
+}
+function opennotif(){
+	if (window.notify==0){
+		document.getElementById('notify').style.display='block'
+		window.notify=1
+	}
+}
+function opennotifforce(){
+		document.getElementById('notify').style.display='block'
+}
+function auto(){
+	var queryDict = {}
+	location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
+	if (typeof(queryDict.link)=="string"){
+		document.getElementById('bypassentry').value=queryDict.link
+	}
+	if (queryDict.start=='true'){
+		bypass()
+	}
+	if (queryDict.redir=='true'){
+		window.autoRedir=true
+	}
+}
+function fill_log(success){
+	if(success){
+		document.getElementById('bypasslog').innerHTML+="<p class='text' style='color:#5acc4b;word-break:break-all;'>"+window.bypasserLog[window.bypasserLog.length - 1][1]+"</p>"
+	}
+	else {
+		document.getElementById('bypasslog').innerHTML+="<p class='text' style='color:#eb3b3b;word-break:break-all;'>"+window.bypasserLog[window.bypasserLog.length - 1][1]+"</p>"
+		error_output()
+	}
+	var element = document.getElementById("bypasslog")
+	element.scrollTop = element.scrollHeight
+}
+function make_output(output){
+	document.getElementById("bypasstext").innerHTML="Output link: <a id='bypassoutput' style='color:#559ced;word-break: break-all;' target='_blank' ></a>"
+	document.getElementById("bypassoutput").href=output
+	document.getElementById("bypassoutput").innerHTML=output
+}
+function clear_output(){
+	document.getElementById("bypasstext").innerHTML="Output link: <a id='bypassoutput' style='color:#2576f7;word-break: break-all;' target='_blank' >Loading...</a>"	
+}
+function error_output(){
+	document.getElementById("bypasstext").innerHTML="Output link: <a id='bypassoutput' style='color:#eb3b3b;word-break: break-all;' target='_blank' >Error</a>"	
+	opennotif()
+	
+}
+//Linkvertise bypasser javascript by GamesModPlus. Bypass method from greasyfork linkvertise bypasser https://greasyfork.org/fr-CA/scripts/409156-linkvertise-bypass/code
+function bypass (){
+	//Create redir url object
+	window.redirUrl=null
+	
+	//Set cors bypass to be able to get link
+	window.corsbypass = 'https://gamesmodplus.herokuapp.com/api/linkvertise_cors_bypasser'
+	
+	//Create log
+	window.bypasserLog=[]
+	
+	//Create status 
+	window.bypasserStatus='loading'
+	
+	//Get link
+	var link = document.getElementById('bypassentry').value
+	
+	//Clear log
+	document.getElementById('bypasslog').innerHTML=""
+	
+	//Clear output
+	clear_output()
+	
+	//Get idname
+	try{
+		var begin = link.match(/\d+/)
+		var end = link.match(/\?/)
+		if (end==null){
+			var idname = link.slice(begin.index, link.length)
+			}
+		else {
+			var idname = link.slice(begin.index, end.index)
+			}
+		}
+	catch(error){
+		console.error('Error at step 1 | Broken link: Make sure the link that you entered is from linkvertise and is not missing parts')
+		window.bypasserLog[1] = ['fail','Broken link. Make sure the link that you entered is from linkvertise and is not missing parts']
+		fill_log(false)
+		window.bypasserStatus='fail'
+		return
+	}
+	console.log('step 1 | Got id/name link piece | ("'+idname+'")')
+	window.bypasserLog[1] = ['success','Got id/name link piece | ("'+idname+'")']
+	fill_log(true)
+	
+	//Try getting api response throught CORS
+	try{
+		var http = new XMLHttpRequest();
+		var url = window.corsbypass+"?url=https://publisher.linkvertise.com/api/v1/redirect/link/static/"+idname
+		http.open("GET", url);
+		http.send()
+	}
+	catch(error){
+		console.error('Error at step 2 | Error getting api link with CORS: The CORS bypasser seems to be having problems, please try using the bypasser later')
+		window.bypasserLog[2] = ['fail','Error getting api link with CORS: The CORS bypasser seems to be having problems, please try using the bypasser later']
+		fill_log(false)
+		window.bypasserStatus='fail'
+		return
+	}
+	console.log('step 2 | Got api link | ("https://publisher.linkvertise.com/api/v1/redirect/link/static/'+idname+'")')
+	window.bypasserLog[2] = ['success','Got api link | ("https://publisher.linkvertise.com/api/v1/redirect/link/static/'+idname+'")']
+	fill_log(true)
+	http.onload = function(e){
+		//Try getting api response content
+		try{
+			var apiData=JSON.parse(JSON.parse(http.responseText).result)
+		}
+		catch(error){
+			console.error('Error at step 3 | Error getting api link CORS content: The CORS bypasser gave the wrong output or the linkvertise link is invalid')
+			window.bypasserLog[3] = ['fail','Error getting api link CORS content: The CORS bypasser gave the wrong output or the linkvertise link is invalid']
+			fill_log(false)
+			window.bypasserStatus='fail'
+			return
+		}
+		console.log('step 3 | Got api link content')
+		window.bypasserLog[3] = ['success','Got api link content']
+		fill_log(true)
+		
+		//Create key
+		let key = {
+			timestamp: new Date().getTime(),
+			random: "6548307"
+		}
+		
+		//Try finding key in api content
+		try{
+			key.link_id = apiData.data.link.id
+		}
+		catch(error){
+			console.error('Error at step 4 | Error get failed, make sure the link you entered is correct and if it is try bypassing again')
+			window.bypasserLog[4] = ['fail','Error get failed, make sure the link you entered is correct and if it is try bypassing again']
+			fill_log(false)
+			window.bypasserStatus='fail'
+			return
+		}
+		console.log('step 4 | Found key | ("'+apiData.data.link.id+'")')
+		window.bypasserLog[4] = ['success','Found key | ("'+apiData.data.link.id+'")']
+		fill_log(true)
+		
+		//Try encoding the key
+		try{
+			encodedKey = JSON.stringify({serial: btoa(JSON.stringify(key))})
+		}
+		catch(error){
+			console.log('Error at step 5 | Error encoding key: The key found could not be encoded sorry')
+			window.bypasserLog[5] = ['fail','Error encoding key: The key found could not be encoded sorry']
+			fill_log(false)
+			window.bypasserStatus='fail'
+			return
+		}
+		console.log('step 5 | Encoded key | ("'+encodedKey+'")')
+		window.bypasserLog[5] = ['success','Encoded key | ("'+encodedKey+'")']
+		fill_log(true)
+		
+		//Try getting redir api response throught CORS
+		try{
+			var http2 = new XMLHttpRequest();
+			var url2 = window.corsbypass+"?url=https://publisher.linkvertise.com/api/v1/redirect/link/"+idname+"/target&data="+encodedKey
+			http2.open("GET", url2);
+			http2.send()
+		}
+		catch(error){
+			console.error('Error at step 6 | Error posting to redir api link with CORS: The CORS bypasser seems to be having problems, please try again later')
+			window.bypasserLog[6] = ['fail','Error posting to redir api link with CORS: The CORS bypasser seems to be having problems, please try again later']
+			fill_log(false)
+			window.bypasserStatus='fail'
+			return
+		}
+		console.log('step 6 | Posted to redir api link | ("https://publisher.linkvertise.com/api/v1/redirect/link/'+idname+'/target")')
+		window.bypasserLog[6] = ['success','Posted to redir api link | ("https://publisher.linkvertise.com/api/v1/redirect/link/'+idname+'/target")']
+		fill_log(true)
+		http2.onload = function(e){
+			//Try getting redir api response content
+			try{
+				var redirData=JSON.parse(JSON.parse(http2.responseText).result)
+			}
+			catch(error){
+				console.error('Error at step 7 | Error getting redir api link CORS content: The CORS bypasser gave the wrong output or the linkvertise link is invalid')
+				window.bypasserLog[7] = ['fail','Error getting redir api link CORS content: The CORS bypasser gave the wrong output or the linkvertise link is invalid']
+				fill_log(false)
+				window.bypasserStatus='fail'
+				return
+			}
+			console.log('step 7 | Got redir api content')
+			window.bypasserLog[7] = ['success','Got redir api content']
+			fill_log(true)
+			
+			//Try finding redir
+			try{
+				var redirUrl=redirData.data.target
+				window.redirUrl=redirUrl
+			}
+			catch(error){
+				console.error('Error at step 8 | Error post failed try bypassing the link again')
+				window.bypasserLog[8] = ['fail','Error post failed try bypassing the link again']
+				fill_log(false)
+				window.bypasserStatus='fail'
+				return
+			}
+			console.log('step 8 | Got redir link | ("'+redirUrl+'")')
+			window.bypasserLog[8] = ['success','Got redir link | ("'+redirUrl+'")']
+			fill_log(true)
+			window.bypasserStatus='success'
+			make_output(redirUrl)
+			if (window.autoRedir==true){
+				top.window.location.href=redirUrl
+			}
+			return
+		}
+	}
+}
+</script>
+</body>
+</html>
