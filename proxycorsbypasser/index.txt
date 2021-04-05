@@ -1,4 +1,6 @@
 CORS bypasser N1 (https://script.google.com/macros/s/AKfycbxoM-vZ4oSRe2UQL9n-cK8i8caHSIo-2iJfc4gdGfm-yIi2z68/exec) (Got overflown and killed)
 CORS bypasser N2 (https://script.google.com/macros/s/AKfycbzaSb1uBr19zSAtev7iJsnxJfI_XPa1cWjWeMWv7F1kcMpPFuA/exec) (Got overflown and killed)
 CORS bypasser N3 (https://script.google.com/macros/s/AKfycbx7Ds_983KtvQAnmG64OBLG9AnDnvVF87I0VOF1Yw3Z5otkyAup/exec) (Got overflown and killed)
-CORS bypasserv2(mega CORS bypasser beta) N4 http://gmpapi.000webhostapp.com/linkvertisecorsbypasser/index.php (Works nicely, but slow) (Remember if you don't want to get a Cross Origin error use the index.php and not just the path!) 
+CORS bypasserv2(mega CORS bypasser beta) N4 http://gmpapi.000webhostapp.com/linkvertisecorsbypasser/index.php (Got overflown and killed) (Remember if you don't want to get a Cross Origin error use the index.php and not just the path!) 
+CORS bypasserv3(mega CORS bypasser beta) N4 http://gmpapi.000webhostapp.com/linkvertisecorsbypasser/index2.php (Got overflown and killed) (Remember if you don't want to get a Cross Origin error use the index.php and not just the path!)
+CORS bypasserv4(mega CORS bypasser betav2) https://gamesmodplus.herokuapp.com/api/linkvertise_cors_bypasser (Working nicely)
