@@ -166,7 +166,7 @@ amongusplus/Hackermode/V28.2
 :Message1
 
 amongusplus/Hackermode/V29
-https://mark.nl.tab.digital/s/GCWk7YA7GBRfS9F/download
+:Message1
 
 amongusplus/Hackermode/V30
 :Message1
@@ -208,7 +208,28 @@ amongusplus/Hackermode/V30.37
 https://mark.nl.tab.digital/s/RLfQmeHCqj9CmXb/download
 
 amongusplus/Hackermode/V31
-https://mega.nz/file/ZToHwIrJ#BaF2WnnmivwIMAdHFbRVGDKVy53fgfpd19jUBxs2JoE
+https://mega.nz/file/Rkpm1AIR#9EDYQnL14T5tS6_o52P76RsAV8x2oCMUzADZ6oCAGEE
+
+amongusplus/Hackermode/V31.6
+https://mega.nz/file/Jw4mFaaR#VX8pzoCmksaE0zxFL0tDwE1A9rhtkKjUiAD8KzcWZqo
+
+amongusplus/Hackermode/V31.7
+https://mega.nz/file/sho0FYpa#iWtaEviS9sLgUH3F8rFbsnBHJ-LKnaKtj2CE3yxSObk
+
+amongusplus/Hackermode/V31.8
+https://mega.nz/file/wk5SUQwT#oqsY9tK0OCAvb-Nu000G_5-GjiCPR7VqqjXqzH_1EqI
+
+amongusplus/Hackermode/V31.9
+https://mega.nz/file/tpggWQpC#yj0DtByUXuwWg-DAMsVqoep55Ox9ATV0oojeBSRxTwc
+
+amongusplus/Hackermode/V31.12
+https://mega.nz/file/MsxWyQha#JO7oBCf6HAtErZ00nIjH2DWrlr5wlGeINMhoQy152tM
+
+amongusplus/Hackermode/V31.15
+https://mega.nz/file/RpxiWaRa#bs4PUzhR8852Ig5S67VitXrW7Kr2p7nBwhSbwyVP5eo
+
+amongusplus/Hackermode/V31.16
+https://mega.nz/file/81gyXALK#s2AbYDs6KQc27Xh7B2gMoK1G7ZfAGDpAdJ18VRhLSmk
 
 amongusplus/Puppets/V1.0
 https://mega.nz/file/gSpmwAxK#xpbZ0KqChysy3VgBimL3vr6OfdeMurqHdj_iQ4u_H4U
@@ -266,6 +287,12 @@ https://mega.nz/file/MXpwxB6b#SZcDCfAgwnfXhiyrus4Utu-tOBRa0hDWCwNAlIL_K4Y
 
 amongusplus/APKMod/V2021.3.31Unsigned
 https://mega.nz/file/4TgmVJJT#swuoCo3av2VLa1asi_Kqga2aNELiESlvvc1WY_u5hMg
+
+amongusplus/APKMod/V2021.4.2Signed
+https://mega.nz/file/IP41jYoL#0Hq_P0usRpmkDLdp7urGUKqHdRizO5WLwvLxd3Bnegs
+
+amongusplus/APKMod/V2021.4.2Unsigned
+https://mega.nz/file/0ShigBTD#s583peyYoqwZas889mPR5BXRf4e5faeAvfkMNzdaYok
 
 amongusplus/AmongUsNintendo/2020.12.5
 :Message1
