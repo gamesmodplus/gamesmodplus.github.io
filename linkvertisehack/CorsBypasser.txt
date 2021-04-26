@@ -1,1 +1,1 @@
-GamesModPlus decided to leak the GMP api code curently hosted on heroku. Feel free to use it an any of your projects, credits are greatly apprecieted. Code: https://github.com/gamesmodplus/gmp-api.
+Currently in EOL
