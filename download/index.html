@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body style="text-align: center;" onload="getLink()">
+		<p>GamesModPlus file downloader</p>
+		<div id="response">
+		</div>
+		<p>Beta V1</p>
+		<script>
+		function getLink(){
+			//Get data
+			var http = new XMLHttpRequest();
+			var url = 'https://gamesmodplus.github.io/download/data.txt'
+			http.open("GET", url);
+			http.send()
+			http.onload = function (){
+				//Reformat data
+				var splitData = http.responseText.split('\n\r\n')
+				for (i=0;i<splitData.length;i++){
+					splitData[i]=splitData[i].split('\n')
+				}
+				//Get path
+				var paramData = new URLSearchParams(window.location.search)
+				var path = paramData.get('site')+'/'+paramData.get('category')+'/'+paramData.get('type')+'\r'
+				//Find path data
+				for (i=0;i<splitData.length;i++){
+					if (splitData[i][0] == path){
+						var pathData = splitData[i]
+					}
+				}
+				//Check for invalid path
+				if (pathData==null){
+					console.log('invalid path')
+					createError()
+					return
+				}
+				//Create HTML Output
+				console.log(pathData)
+				createHTML(pathData)
+			}
+		}
+		function createHTML(data){
+			if (data.length==3){
+				var HTML = '<p>'+data[1]+'</p>'
+				if (data[2]==':Message1\r'){
+					HTML += '<p>Error. This file no longer exists, sorry</p>'
+				}
+				else if (data[2]==':Message2\r'){
+					HTML += '<p>Please wait this file will be added soon...</p>'
+				}
+				else{
+					HTML += '<span>Download link: </span><a href="'+data[2]+'">'+data[2]+'</a>'
+				}
+			}
+			if (data.length==2){
+				var HTML = ''
+				if (data[1]==':Message1\r'){
+					HTML += '<p>Error. This file no longer exists, sorry</p>'
+				}
+				else if (data[1]==':Message2\r'){
+					HTML += '<p>Please wait this file will be added soon...</p>'
+				}
+				else{
+					HTML += '<span>Download link: </span><a href="'+data[1]+'">'+data[1]+'</a>'
+				}
+			}
+			document.getElementById('response').innerHTML=HTML
+		}
+		function createError(){
+			console.log('')
+		}
+		</script>
+	</body>
+	
+</html>
