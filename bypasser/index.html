@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.input {
+  width: 100%;
+  height: 10vmin;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 5vmin;
+  color: #559ced;
+}
+.button {
+  background-color: white;
+  border: 0.4vmin solid #555555;
+  color: #555555;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 5vmin;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 2vmin;
+  width: 90%;
+  height: 10vmin;
+}
+
+.button:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.button-notif {
+  background-color: #3a81f2;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 6vmin;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width:9vmin;
+  height:9vmin;
+  border-radius: 2vmin;
+  padding:0;
+  margin-left:2px;
+  margin-top:2px;
+}
+
+.button-notif:hover {
+  background-color: white;
+  color: #3a81f2;
+}
+
+.button-close {
+  background-color: #e82300;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 6vmin;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width:9vmin;
+  height:9vmin;
+  border-radius: 2vmin;
+  padding:0;
+  margin-left:2px;
+  margin-top:2px;
+}
+
+.button-close:hover {
+  background-color: white;
+  color: #e82300;
+}
+
+.button-home {
+  background-color: #555555;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 4vmin;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width:35vmin;
+  height:9vmin;
+  border-radius: 2vmin;
+  padding:0;
+  margin-left:2px;
+  margin-top:2px;
+  text-shadow:0 0 0 white;
+}
+
+.button-home:hover {
+  background-color: white;
+  color: #555555;
+  text-shadow:0 0 0 #555555;
+}
+
+.button-back {
+  background-color: #555555;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 6vmin;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  width:9vmin;
+  height:9vmin;
+  border-radius: 2vmin;
+  padding:0;
+  margin-left:2px;
+  margin-top:2px;
+}
+
+.button-back:hover {
+  background-color: white;
+  color: #555555;
+}
+
+.text {
+	margin-top:4vmin;
+	margin-bottom:4vmin;
+	font-size: 4.5vmin; 
+	font-family:sans-serif;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.notifbox {
+  width:80vmin;
+  height:89%;
+  background-color:#a1a1a1;
+  position:absolute;
+  top:0;
+  left:0;
+  border-radius:2vmin;
+  border:0.4vmin solid #5c5c5c;
+  text-align:center;
+  padding-top:10vmin;
+  transition-duration: 0.4s;
+}
+
+</style>
+</head>
+<body style="overflow:hidden;background-color:#dedede;margin:0;" onload="auto();">
+
+	<div style='position:absolute;top:0;left:0;margin:0;z-index:3;'>
+		<button id='notifbutton' class='button-notif' style='' onclick="controlnotif()">&#9432 </button>
+	</div>
+	
+	<div style='position:absolute;top:0;left:10vmin;margin:0;'>
+		<button class='button-home' onclick='window.location="https://gamesmodplus.github.io"'><span style="font-size:3vmin;color:transparent;">&#127968 </span> Return home</button>
+	</div>
+	
+	
+	
+	<div style="margin:0 auto;width:98vmin;padding-left:1vmin;padding-right:1vmin;padding-top:6vmin;">
+	
+		<p class="text" style="font-size:3vmin;text-align:center;">Bypasser By GamesModPlus <span style="color:#3da63f;">(V4.5)</span><br>It can take up to <span style="color:#e82300">15</span> seconds to bypass specific links</p>
+	
+		<div style="padding-top:2vmin;text-align:center;">
+			<input type="text" id="bypassentry" class="input" placeholder="Enter your ad link here">
+		</div>
+	
+		<div style="text-align:center;">
+			<button id="bypassbutton" class="button" onclick="bypass();">Bypass</button>
+		</div>
+	
+		<p id="bypasstext" class="text">Output: <a id="bypassoutput" style="color:#559ced;word-break: break-all;" target="_blank"></a></p>
+	
+	</div>
+	
+	<div style="position:absolute;width:100%;bottom:1vmin;">
+		<p class="text" style="font-size:2.5vmin;text-align:center;">Web version: 1.0</p>
+	</div>
+	
+	<div id="notify" class='notifbox' style='visibility:hidden;opacity:0;'>
+		<div style='position:absolute;top:-1px;left:10vmin;margin:0;z-index:3;'>
+			<button id='backbutton' class='button-back' style='display:none;margin:0;transform:rotateY(180deg)' onclick='navigate(1);'>➔</button>
+		</div>
+		
+		<div style="overflow-y:auto;height:100%">
+			<div style='' id='notifpage1'>
+				<button class="button" onclick="navigate('3')" style="font-size:3vmin;height:9vmin;">How to use</button>
+				<button class="button" onclick="navigate('4')" style="font-size:3vmin;height:9vmin;">Update log</button>
+				<button class="button" onclick="navigate('5')" style="font-size:3vmin;height:9vmin;">Info/Credits</button>
+				<p class="text" style="font-size:3vmin;">Note: If you are planning to bypass only linkvertise links then please use <a href="https://thebypasser.com">thebypasser.com</a> to support the team. Also note that this project may break or malfunction
+			</div>
+			
+			<div style="display:none;" id='notifpage2'>
+				<p class='text' style="font-size:4vmin;">The GamesModPlus linkvertise bypasser has been updated! V3 Beta N7 (4-11-2021)</p>
+				<p class="text" style="font-size:3.5vmin;">What's new:</p>
+				<p class="text" style="font-size:3vmin;">-Fixed some issues for safari</br></p>
+				<p class="text" style="font-size:3.5vmin;">Future plans:</p>
+				<p class="text" style="font-size:3vmin;">-Add the ability to bypass multiple links<br>-Add the ability to bypass dynamic links</br></p>
+				<button class="button" onclick="navigate('1');controlnotif();" style="font-size:3vmin;height:9vmin;">Ok</button>
+			</div>
+			
+			<div style="display:none;" id='notifpage3'>
+				<p class='text' style="font-size:4vmin;">Usage:</p>
+				<p class="text" style="font-size:3vmin;">Copy and paste your ad link in the entry box and click the 'Bypass' button. Remember that pasting multiple links at the same time will also not work. Depending on your ad link it may take up to 15 seconds for it to bypass<br><br><span style="color:#cc3737;">Only the following ad links are supported:</span> linkvertise.com, adf.ly, sub2unlock.com, rekonise.com, clictune.com, bit.ly, exe.io, shorte.st, adfoc.us, bc.vc, short.am, ouo.io, fc.lc, adshrink.it, tr.link and shink.me</p>
+			</div>
+			
+			<div style="display:none;" id='notifpage4'>
+				<p class='text' style="font-size:4vmin;">Future plans:</p>
+				<p class="text" style="font-size:3vmin;text-align:left;padding-left:3vmin;">-Add the ability to bypass multiple links</p>
+				<p class='text' style="font-size:4vmin;">Log:</p>
+				<p class="text" style="font-size:3vmin;text-align:left;padding-left:3vmin;">V1 (8-15-2021):<br>&nbsp &nbsp &nbsp -First release</br></p>
+			</div>
+			
+			<div style="display:none;" id='notifpage5'>
+				<p class='text' style="font-size:4vmin;">Info/Credits:</p>
+				<p class="text" style="font-size:3vmin;">The code for this html site and the gmpbypasser api was written by <span style="color:#cc3737;">GamesModPlus</span>, if you plan to use the api in your site then <span style="color:#0814bf;">please give credit</span><br><br>Credits also go to <span style="color:#cc3737;">WaterTheDev</span> for providing some bypass scripts, <span style="color:#cc3737;">bypass.bot.nu</span> for providing a fast and effective way to bypass linkvertise and <span style="color:#cc3737;">GamesModPlus</span> for compiling the bypasser<br><br>If you want to use this api in your projects then you can visit the api at <a style="color:#3d34eb;word-break: break-all;" target="_blank" href="http://gmpbypasser.herokuapp.com/">http://gmpbypasser.herokuapp.com/</a></p>
+			</div>
+		</div>
+	</div>
+	
+<script>
+window.notifpage=1
+document.getElementById('bypassentry').addEventListener("keyup", function(event) {
+	if (event.keyCode === 13) {
+		document.getElementById('bypassbutton').click()
+	}
+})
+function auto(){
+	var queryDict = {}
+	location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
+	if (typeof(queryDict.link)=="string"){
+		document.getElementById('bypassentry').value=queryDict.link
+	}
+	if (queryDict.start=='true'){
+		bypass()
+	}
+	if (queryDict.redir=='true'){
+		window.autoRedir=true
+	}
+}
+function controlnotif(){
+	if (document.getElementById('notifbutton').className=='button-notif'){
+		document.getElementById('notify').style.visibility='visible'
+		document.getElementById('notify').style.opacity=1;
+		document.getElementById('notifbutton').className='button-close'
+		document.getElementById('notifbutton').innerHTML='X'
+	}
+	else{
+		document.getElementById('notify').style.opacity=0;
+		document.getElementById('notify').style.visibility='hidden';
+		document.getElementById('notifbutton').className='button-notif'
+		document.getElementById('notifbutton').innerHTML='&#9432 '
+	}
+}
+function navigate(page){
+	document.getElementById('notifpage'+window.notifpage).style.display='none'
+	document.getElementById('notifpage'+page).style.display='block'
+	window.notifpage=page
+	if (window.notifpage==1){
+		document.getElementById('backbutton').style.display='none'
+		}
+	else{
+		document.getElementById('backbutton').style.display='block'
+		}
+}
+function make_output(output){
+	document.getElementById("bypasstext").innerHTML="Output: <a id='bypassoutput' style='color:#559ced;word-break: break-all;' target='_blank' ></a>"
+	document.getElementById("bypassoutput").href=output
+	document.getElementById("bypassoutput").innerHTML=output
+}
+function clear_output(){
+	document.getElementById("bypasstext").innerHTML="Output: <a id='bypassoutput' style='color:#2576f7;word-break: break-all;' target='_blank' >Loading...</a>"	
+}
+function error_output(error_msg){
+	document.getElementById("bypasstext").innerHTML="Output: <a id='bypassoutput' style='color:#eb3b3b;word-break: break-all;' target='_blank' >"+error_msg+"</a>"	
+	
+}
+//gmpbypasser api
+function bypass (){
+	//Set bypass api link
+	window.gmpbypass = 'https://gmpbypasser.herokuapp.com'
+	
+	//Get link
+	var link = document.getElementById('bypassentry').value
+	
+	//Clear output
+	clear_output()
+	
+	//Try getting api response
+	var http = new XMLHttpRequest();
+	var url = window.gmpbypass+"?url="+link+"&key=PUBLIC"
+	http.open("GET", url);
+	http.send()
+	http.onload = function(e){
+		//Try getting api data
+		try{
+			var apiData=JSON.parse(http.responseText)
+			if (apiData.status == 'success'){
+				make_output(apiData.redirect)
+				if (window.autoRedir==true){
+					top.window.location.href=apiData.redirect
+				}
+			}
+			else{
+				error_output(apiData.description)
+			}
+		}
+		catch(error){
+			error_output('Error, there was a problem reaching the api')
+		}
+	}
+	http.onerror = function(e){
+		error_output('Error, there was a problem reaching the api')
+	}
+}
+</script>
+</body>
+</html>
