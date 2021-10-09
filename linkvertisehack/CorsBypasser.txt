@@ -1,0 +1,4 @@
+Sorry, the linkvertise cors bypasser service has ended
+Linkvertise cors bypasser was an API created by gamesmodplus to retrieve json data from linkvertise allowing you to bypass it, now this service is incorporated into the gmpbypasser as linkvertise_com_2 (the backup linkvertise bypass) 
+
+If you want to bypass linkvertise you can visit thebypasser.com or https://gamesmodplus.github.io/bypasser running on the new http://gmpbypasser.herokuapp.com/ api
